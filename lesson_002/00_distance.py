@@ -35,6 +35,7 @@ distances['London']['Paris'] = london_to_paris
 distances['Paris'] = {}
 distances['Paris']['Moscow'] = moscow_to_paris
 distances['Paris']['London'] = london_to_paris
+
 pprint(distances)
 
 
