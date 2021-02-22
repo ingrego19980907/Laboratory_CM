@@ -28,7 +28,7 @@ distances['Moscow']['London'] = moscow_to_london
 distances['Moscow']['Paris'] = moscow_to_paris
 
 london_to_moscow = moscow_to_london
-london_to_paris = ((london[0]-paris[0]) ** 2 + (london[1] - paris[1]) ** 2) ** .5
+london_to_paris = ((london[0] - paris[0]) ** 2 + (london[1] - paris[1]) ** 2) ** .5
 distances['London'] = {}
 distances['London']['Moscow'] = london_to_moscow
 distances['London']['Paris'] = london_to_paris
@@ -38,7 +38,3 @@ distances['Paris']['Moscow'] = moscow_to_paris
 distances['Paris']['London'] = london_to_paris
 
 pprint(distances)
-
-
-
-
