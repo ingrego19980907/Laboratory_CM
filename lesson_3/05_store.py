@@ -55,7 +55,7 @@ for kay in goods:
     suma = 0
     for i in list_tovar_on_store:
         quantity = i['quantity']
-        quantity_tov +=quantity
+        quantity_tov += quantity
         price = i['price']
         sumi = quantity * price
         suma += sumi
