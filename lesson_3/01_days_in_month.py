@@ -11,4 +11,9 @@ user_input = input("Введите, пожалуйста, номер месяц�
 month = int(user_input)
 print('Вы ввели', month)
 
-# TODO здесь ваш код
+if 13 > month > 0:
+    if month % 2 == 1:
+        print('31 day in month')
+    elif month == 2:
+        print(' 28 days in month')
+    else: print(' 30 days in month')
