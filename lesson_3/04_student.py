@@ -10,5 +10,15 @@
 #   Студенту надо попросить ХХХ.ХХ рублей
 
 educational_grant, expenses = 10000, 12000
+month = 0
+suma = 0
+while ( 0 <= month < 11):
+    if month == 0:
+        suma += educational_grant - expenses
+        month += 1
+    else:
+        suma += educational_grant - (expenses + expenses * .03)
 
-# TODO здесь ваш код
+    month += 1
+
+print(suma)
