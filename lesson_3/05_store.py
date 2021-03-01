@@ -49,7 +49,15 @@ store = {
 for kay in goods:
     cod = goods[kay]
     tovar = kay
-    for i in store[cod]:
-        quantity = store[cod][0]['quantity']
-        price = store[cod][0]['price']
-    print('Товар ', tovar, ' Количество ', quantity, 'Цена', price, ' Общая стоимость', quantity * price)
+    list_tovar_on_store = store[cod]
+    quantity_tov = 0
+    price_tov = 0
+    suma = 0
+    for i in list_tovar_on_store:
+        quantity = i['quantity']
+        quantity_tov +=quantity
+        price = i['price']
+        sumi = quantity * price
+        suma += sumi
+    print('Товар ', tovar, ' Количество ', quantity_tov, ' Общая стоимость', suma)
+
