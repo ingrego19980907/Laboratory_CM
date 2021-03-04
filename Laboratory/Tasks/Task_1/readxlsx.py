@@ -11,9 +11,11 @@ def stint1(x):
     return 1.0 if x == 'e' else 0.0
 
 
+names = ['AA', 'BB', 'CC', 'DD', 'EE', 'FF', 'GG', 'HH', 'II', 'JJ', 'KK', 'LL',
+         'MM', 'NN', 'OO', 'PP', 'QQ', 'RR', 'SS', 'TT', 'VV', 'UU', 'WW']
+
 df = pd.read_excel(xlsx, usecols='A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,V,U,W', header=None,
-                   names=['AA', 'BB', 'CC', 'DD', 'EE', 'FF', 'GG', 'HH', 'II', 'JJ', 'KK', 'LL',
-                          'MM', 'NN', 'OO', 'PP', 'QQ', 'RR', 'SS', 'TT', 'VV', 'UU', 'WW'], nrows=50,
+                   names=names, nrows=50,
                    converters={'AA': stint1, 'BB': stint, 'CC': stint, 'DD': stint, 'EE': stint,
                                'FF': stint, 'GG': stint, 'HH': stint, 'II': stint, 'JJ': stint,
                                'KK': stint, 'LL': stint, 'MM': stint, 'NN': stint, 'OO': stint,
