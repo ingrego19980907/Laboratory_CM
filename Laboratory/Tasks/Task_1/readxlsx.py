@@ -1,4 +1,6 @@
 import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
 
 xlsx = pd.ExcelFile(r'C:\Python\Project\Study\Laboratory\Tasks\Task_1\Task_1.xlsx')
 
@@ -14,7 +16,7 @@ def stint1(x):
 names = ['AA', 'BB', 'CC', 'DD', 'EE', 'FF', 'GG', 'HH', 'II', 'JJ', 'KK', 'LL',
          'MM', 'NN', 'OO', 'PP', 'QQ', 'RR', 'SS', 'TT', 'VV', 'UU', 'WW']
 
-df = pd.read_excel(xlsx, usecols='A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,V,U,W', header=None,
+df = pd.read_excel(xlsx, usecols='A:W', header=None,
                    names=names, nrows=50,
                    converters={'AA': stint1, 'BB': stint, 'CC': stint, 'DD': stint, 'EE': stint,
                                'FF': stint, 'GG': stint, 'HH': stint, 'II': stint, 'JJ': stint,
@@ -25,4 +27,14 @@ print(df)
 
 sorted_df = df.sort_values(by='AA')
 
-sorted_df.to_excel('C:/Python/Project/Study/Laboratory/Tasks/Task_1/result_1.xlsx', header=False, index=False)
+# sorted_df.to_excel('C:/Python/Project/Study/Laboratory/Tasks/Task_1/result_1.xlsx', header=False, index=False)
+ar2d = np.array(sorted_df)
+print(ar2d)
+
+fig1, ax1 = plt.subplots()
+x = 6
+y = 5
+
+plt.scatter()
+ax1.plot(x, y, label='sin', marker='o', color='grey')
+plt.show()
