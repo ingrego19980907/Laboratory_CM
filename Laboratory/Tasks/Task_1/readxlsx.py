@@ -10,7 +10,7 @@ xlsx = pd.ExcelFile(r'C:\Python\Project\Study\Laboratory\Tasks\Task_1\Task_1.xls
 
 
 def stint(x):
-    return ord(x) / 100.0  # функція ord(x) надає ascii-код символа x
+    return ord(x) / 100.0  #
 
 
 def stint1(x):
@@ -46,14 +46,14 @@ print(
     'горизонтальна координата яких буде визначатися значенням у першому стовпчину, а вертикальна - у другому.'
     ' Точки позначитиме червоними колами..___ \n\n\n\n\n')
 
-# ax1 = plt.subplots()
+# ax1 = mplt.subplots()
 # x = 6
 # y = 5
-# plt.scatter()
+# mplt.scatter()
 # ax1.plot(x, y, marker='o', color='grey')
-# plt.show()
-x_1 = 3
-y_1 = 8
+# mplt.show()
+x_1 = 2
+y_1 = 3
 for i in range(0, len(arr_main)):
     mplt.scatter(arr_main[i][x_1], arr_main[i][y_1], label='task_3', marker='o', color='b')
 mplt.show()
@@ -140,18 +140,25 @@ print('Скалярний добуток вектора 1 = ', scal_mult_1)
 scal_mult_2 = np.dot(vector_2[0], vector_2[1])
 print('Скалярний добуток вектора 2 = ', scal_mult_2)
 
-vector_1_until_4_value = vector_1[0][0:4]
-vector_2_until_4_value = vector_1[1][0:4]
-vectors_mlt_1 = np.cross(vector_1_until_4_value, vector_2_until_4_value)
+vector_1_until_2_value = vector_1[0][0:2]
+vector_2_until_2_value = vector_1[1][0:2]
+vectors_mlt_1 = np.cross(vector_1_until_2_value, vector_2_until_2_value)
 
 print('Векторний добуток вектора 1 = ', vectors_mlt_1)
 
+
+vector_3_until_2_value = vector_2[0][0:2]
+vector_4_until_2_value = vector_2[1][0:2]
+vectors_mlt_2 = np.cross(vector_3_until_2_value, vector_4_until_2_value)
+
+print('Векторний добуток вектора 2 = ', vectors_mlt_2)
+
 # task_10
 print(
-    "___10 Перетворюватиме DataFrame з пункту 8 у двовимірний масив."
+    "\n\n\n___10 Перетворюватиме DataFrame з пункту 8 у двовимірний масив."
     " За правилами добутку матриць множитиме цей масив на масив з пункту 6,"
     " з власних векторів якого було побудовано DataFrame у пункті 8. ___ \n")
 
-mat = df_vector_1.to_numpy().dot(arr_subtracted_1)
+mat = df_vector_2.to_numpy().dot(arr_subtracted_2)
 print(mat)
 
