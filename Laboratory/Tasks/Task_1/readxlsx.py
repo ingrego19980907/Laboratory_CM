@@ -32,7 +32,7 @@ print(df)
 
 sorted_df = df.sort_values(by='AA')
 
-# sorted_df.to_excel('C:/Python/Project/Study/Laboratory/Tasks/Task_1/result_1.xlsx', header=False, index=False)
+sorted_df.to_excel('C:/Python/Project/Study/Laboratory/Tasks/Task_1/result_1.xlsx', header=False, index=False)
 
 # task_2
 print('\n\n\n\n\n___Завдання №2 Створити з DataFrame за допомогою бібліотеки NumPy двовимірний масив.')
