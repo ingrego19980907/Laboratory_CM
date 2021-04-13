@@ -124,11 +124,12 @@ class Perceptron(object):
         """
         #Ініціалізації ваг випадковими числами
         #Спочатку створюємо одновимірний масив випадкових чисел
-        rgen = np.random.RandomState(self.random_state)
+        # !! rgen = np.random.RandomState(self.random_state)
         #З цього масиву з центром у loc=0.0 з дисперсією scale=0.01
         #створюємо масив розміру size=1 + X.shape[1] (X.shape[1]
         #дає кількість стовпчиків)
-        self.w_=rgen.normal(loc=0.0, scale=0.01, size=1 + X.shape[1])
+        # self.w_=rgen.normal(loc=0.0, scale=0.01, size=1 + X.shape[1])
+        self.w_ = [0, 0, 0]
 
         #Змінимо спосіб ініціалізації ваг
         N=X.shape[1]
