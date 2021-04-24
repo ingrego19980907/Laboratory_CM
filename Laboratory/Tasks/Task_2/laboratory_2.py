@@ -59,16 +59,16 @@ print('elem_count=', elem_count)
 у батьківській групі і занесемо її до словника. Ключу "1"
 відповідатиме ймовірність появи істівного гриба, а клчу
 "0" - ймовірність появи отруйного"""
-bb = {}
-bb = df['PE'].value_counts() / elem_count
-MainEntropy = -bb[0] * math.log(bb[0]) - bb[1] * math.log(bb[1])
-print("Виводимо словник ймовірностей! \n", bb)
+bb_column = {}
+bb_column = df['PE'].value_counts() / elem_count
+MainEntropy = -bb_column[0] * math.log(bb_column[0]) - bb_column[1] * math.log(bb_column[1])
+print("Виводимо словник ймовірностей! \n", bb_column)
 # # Створюємо словник, в якому ключами будуть значення, а елементами кількість об'єктів в кожній групі
-cc = {}
-cc = df['Diameter'].value_counts()
+cc_column = {}
+cc_column = df['Diameter'].value_counts()
 # Створюємо список ключів словника сс
 kl = []
-for s in cc.keys():
+for s in cc_column.keys():
     kl.append(s)
 print(kl)
 # Кількість груп
@@ -77,16 +77,16 @@ print(ngroup)
 # # Створюємо список кількостей елементів у кожній групі
 nig = []
 for i in range(ngroup):
-    nig.append(cc[kl[i]])
+    nig.append(cc_column[kl[i]])
 print('nig=', nig)
-av = 0.
+average_value = 0.
 for i in range(len(kl)):
-    av += kl[i] * nig[i] / elem_count
-print('average value', av)
-vav = {"Diameter": av}
+    average_value += kl[i] * nig[i] / elem_count
+print('average value', average_value)
+vav = {"Diameter": average_value}
 VaV = {}
 for col in namescol:
-    VaV.update({col: av})
+    VaV.update({col: average_value})
 print(VaV)
 # # Створюємо список кількостей одиниць і нулів у кожній групі
 # # Зовнішній вимір буде відповідати кількості груп, а внутрішній - дорівнює двом, тобто відповідає двом різним значенням
@@ -96,7 +96,7 @@ for i in range(ngroup):
     sss.append([])
     for j in range(2):
         sss[i].append(0.0)
-print(sss)
+print('sss=', sss)
 # # Рахуємо кількість нулів та одиниць у першому стовпчику для кожної з груп
 for i in range(elem_count):
     for j in range(ngroup):
