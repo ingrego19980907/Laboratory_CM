@@ -65,26 +65,27 @@ MainEntropy = -bb[0] * math.log(bb[0]) - bb[1] * math.log(bb[1])
 print("Виводимо словник ймовірностей! \n", bb)
 # # Створюємо словник, в якому ключами будуть значення, а елементами кількість об'єктів в кожній групі
 
-duct_value_and_quant = df['Diameter'].value_counts()
-print('cc =\n', duct_value_and_quant, )
+dict_value_and_quant = df['Diameter'].value_counts()
+print('cc =\n', dict_value_and_quant, )
 # Створюємо список ключів словника сс
 kl = []
-for s in duct_value_and_quant.keys():
+for s in dict_value_and_quant.keys():
     kl.append(s)
-print(kl)
+print('kl\n', kl)
 # Кількість груп
 ngroup = len(kl)
 print(ngroup)
 # # Створюємо список кількостей елементів у кожній групі
 nig = []
 for i in range(ngroup):
-    nig.append(duct_value_and_quant[kl[i]])
+    nig.append(dict_value_and_quant[kl[i]])
 print('nig=', nig)
 av = 0.
 for i in range(len(kl)):
     av += kl[i] * nig[i] / elem_count
 print('average value', av)
-vav = {"Diameter": av}
+
+
 VaV = {}
 for col in namescol:
     VaV.update({col: av})
