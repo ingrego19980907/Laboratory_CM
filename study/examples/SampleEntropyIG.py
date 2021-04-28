@@ -64,11 +64,12 @@ bb = df['PE'].value_counts() / elem_count
 MainEntropy = -bb[0] * math.log(bb[0]) - bb[1] * math.log(bb[1])
 print("Виводимо словник ймовірностей! \n", bb)
 # # Створюємо словник, в якому ключами будуть значення, а елементами кількість об'єктів в кожній групі
-cc = {}
-cc = df['Diameter'].value_counts()
+
+duct_value_and_quant = df['Diameter'].value_counts()
+print('cc =\n', duct_value_and_quant, )
 # Створюємо список ключів словника сс
 kl = []
-for s in cc.keys():
+for s in duct_value_and_quant.keys():
     kl.append(s)
 print(kl)
 # Кількість груп
@@ -77,7 +78,7 @@ print(ngroup)
 # # Створюємо список кількостей елементів у кожній групі
 nig = []
 for i in range(ngroup):
-    nig.append(cc[kl[i]])
+    nig.append(duct_value_and_quant[kl[i]])
 print('nig=', nig)
 av = 0.
 for i in range(len(kl)):
