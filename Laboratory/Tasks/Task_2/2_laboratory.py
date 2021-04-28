@@ -1,3 +1,4 @@
+from pprint import pprint
 
 import pandas as pd
 import numpy as np
@@ -49,15 +50,16 @@ print('elem_count=', elem_count, end='\n\n')
 
 dict_probability = df['AA'].value_counts() / elem_count
 MainEntropy = -dict_probability[0] * math.log(dict_probability[0]) - dict_probability[1] * math.log(dict_probability[1])
+print('MainEntropy', MainEntropy)
 print("Виводимо словник ймовірностей! \n", dict_probability, end='\n\n')
 
 # # Створюємо словник вловників, в якому ключами будуть значення, а елементами кількість об'єктів в кожній групі
 list_of_dicts_val_and_qunt = []
-for i in sorted_df[1:]:
+for i in sorted_df:
     dict_value_and_quant = df[i].value_counts()
     list_of_dicts_val_and_qunt.append(dict_value_and_quant)
 
-print('список словників =\n', list_of_dicts_val_and_qunt, end='\n\n')
+print('список словників, list_of_dicts_val_and_qunt\n', list_of_dicts_val_and_qunt, end='\n\n')
 
 
 # Створюємо список списків ключів словників
@@ -70,12 +72,18 @@ for dict in list_of_dicts_val_and_qunt:
 
 print('list_of_lists_keys_of_dicts\n', list_of_lists_keys_of_dicts, end='\n\n')
 
+
+
+
 # list Кількості груп
 list_of_ngroup = []
 for list_keys in list_of_lists_keys_of_dicts:
     ngroup = len(list_keys)
     list_of_ngroup.append(ngroup)
 print('list_of_ngroup\n', list_of_ngroup, end='\n\n')
+
+
+
 
 # # Створюємо список кількостей елементів у кожній групі
 
@@ -87,6 +95,10 @@ for dict in list_of_dicts_val_and_qunt:
     list_of_lists_nig.append(value_list)
 
 print('list_of_lists_nig\n', list_of_lists_nig, end='\n\n')
+
+
+
+
 
 # Середнє значення
 list_average_values = []
@@ -111,8 +123,87 @@ for dict in list_of_dicts_namecol_aver_val:
 
 
 
+
+
+
+# # Створюємо список кількостей одиниць і нулів у кожній групі
+# # Зовнішній вимір буде відповідати кількості груп, а внутрішній - дорівнює двом, тобто відповідає двом різним значенням
+# # у першому стовпчику
+
+list_of_lists_sss = []
+
+for n_group in list_of_ngroup:
+    sss = []
+    for i in range(n_group):
+        sss.append([])
+        for j in range(2):
+            sss[i].append(0.0)
+    list_of_lists_sss.append(sss)
+print('list_sss\n', list_of_lists_sss)
+
+
+# # Рахуємо кількість нулів та одиниць у першому стовпчику для кожної з груп
+
+k = -1
+for key in sorted_df:
+    k += 1
+    for i in range(elem_count):
+        for j in range(list_of_ngroup[k]):
+            if sorted_df[key][i] == list_of_lists_keys_of_dicts[k][j]:  # Вибираємо елемент j-ої групи
+                if sorted_df['AA'][i] == 0.0:  # Якщо стовпчику PE для цільового атрибута стоїть значення нуль, то
+                    list_of_lists_sss[k][j][0] += 1.  # рахуємо нулі і результат заносимо на першу позицію j-ої групи
+                else:
+                    list_of_lists_sss[k][j][1] += 1.
+                    # У іншому випадку рахуємо одиниці і результат заносимо на другу позицію j-ої групи
+
+print('list_sss\n', list_of_lists_sss)
+
+
+# # Рахуємо ентропії для кожної з груп
+
+list_Entropy = []
+
+k = 0
+for list_sss in list_of_lists_sss[1:]:
+    entropy = []
+    k += 1
+    for i in range(len(list_sss)):
+        EG = 0.
+        if list_sss[i][0] != 0.:
+            EG = EG - list_sss[i][0] / list_of_lists_nig[k][i] * math.log(list_sss[i][0] / list_of_lists_nig[k][i])  # Якщо кількість елементів в і-ій групі з
+            # нульовими значеннями в першому стовпчику дорівнює нулю, то дія не виконується
+        if list_sss[i][1] != 0.:
+            EG = EG - list_sss[i][1] / list_of_lists_nig[k][i] * math.log(list_sss[i][1] / list_of_lists_nig[k][i])  # Якщо кількість елементів в і-ій групі зi
+            # значеннями "одиниця" в першому стовпчику дорівнює нулю, то дія не виконується
+        entropy.append(EG)
+    list_Entropy.append(entropy)
+
+print('list of Entropy')
+
+for entropy in list_Entropy:
+    print(entropy)
+
 print('\n\n\n\n\n___Завдання №2 Рахуватиме прирости інформації для усіх нецільових атрибутів грибів.')
 
+IG_list = []
+k = 0
+for entropy in list_Entropy:
+    IG = MainEntropy
+    k += 1
+    for i in range(len(entropy)):
+        IG -= entropy[i] * list_of_lists_nig[k][i] / elem_count
+    IG_list.append(IG)
+
+IG_dict = {}
+k = 0
+for val in IG_list:
+    k += 1
+    IG_dict[names[k]] = val
+
+
+print('MainEntropy=', MainEntropy)
+print('InformationGrowth:',)
+pprint(IG_dict)
 
 print('\n\n\n\n\n___Завдання №3 За будь-якими 25 грибами таблиці будуватиме класифікаційні дерева для одного –двадцяти'
       'найбільш інформативних параметрів.')

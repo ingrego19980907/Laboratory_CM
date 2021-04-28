@@ -74,7 +74,7 @@ for s in dict_value_and_quant.keys():
 print('kl\n', kl)
 # Кількість груп
 ngroup = len(kl)
-print(ngroup)
+print('ngroup\n', ngroup)
 # # Створюємо список кількостей елементів у кожній групі
 nig = []
 for i in range(ngroup):
@@ -98,7 +98,7 @@ for i in range(ngroup):
     sss.append([])
     for j in range(2):
         sss[i].append(0.0)
-print(sss)
+print('sss\n', sss)
 # # Рахуємо кількість нулів та одиниць у першому стовпчику для кожної з груп
 for i in range(elem_count):
     for j in range(ngroup):
@@ -108,7 +108,7 @@ for i in range(elem_count):
             else:
                 sss[j][1] += 1.
                 # У іншому випадку рахуємо одиниці і результат заносимо на другу позицію j-ої групи
-print(sss)
+print('sss_2\n', sss)
 # # Рахуємо ентропії для кожної з груп
 Entropies = []
 for i in range(ngroup):
@@ -119,7 +119,6 @@ for i in range(ngroup):
     if sss[i][1] != 0.:
         EG = EG - sss[i][1] / nig[i] * math.log(sss[i][1] / nig[i])  # Якщо кількість елементів в і-ій групі зi
         # значеннями "одиниця" в першому стовпчику дорівнює нулю, то дія не виконується
-
     Entropies.append(EG)
 
 print(Entropies)
