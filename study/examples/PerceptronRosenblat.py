@@ -183,10 +183,10 @@ import math
 def stint(x):
     return ord(x)/1000.0
 
-df = pd.read_excel(r'G:\GEXF\МКДС/3.xlsx', usecols='A,B,C,D,E,F,G,J,M,K,W', header=None,names=[0,1,2,3,4,5,6,7,8,9,10],converters={1:stint, 2:stint,3:stint, 4:stint,5:stint, 6:stint,7:stint, 8:stint,9:stint, 10:stint})
+df = pd.read_excel(r'C:\Python\Project\Study\Laboratory\Tasks\Task_1\Task_1.xlsx', usecols='A,B,C,D,E,F,G,J,M,K,W', header=None,names=[0,1,2,3,4,5,6,7,8,9,10],
+                   converters={1:stint, 2:stint,3:stint, 4:stint,5:stint, 6:stint,7:stint, 8:stint,9:stint, 10:stint})
 print(df)
-"""df = pd.read_csv('https://archive.ics.uci.edu/ml/'
-         'machine-learning-databases/iris/iris.data', header=None)"""
+# df = pd.read_csv('https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data', header=None)
 
 
 
@@ -195,7 +195,10 @@ print(df)
 # ### Note:
 #
 #
-# You can find a copy of the Iris dataset (and all other datasets used in this book) in the code bundle of this book, which you can use if you are working offline or the UCI server at https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data is temporarily unavailable. For instance, to load the Iris dataset from a local directory, you can replace the line
+# You can find a copy of the Iris dataset (and all other datasets used in this book) in the code bundle of this book,
+# which you can use if you are working offline or the UCI server at
+# https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data is temporarily unavailable.
+# For instance, to load the Iris dataset from a local directory, you can replace the line
 #
 #     df = pd.read_csv('https://archive.ics.uci.edu/ml/'
 #         'machine-learning-databases/iris/iris.data', header=None)

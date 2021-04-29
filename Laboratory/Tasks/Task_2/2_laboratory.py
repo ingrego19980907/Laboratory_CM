@@ -4,17 +4,17 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import math
+from PerceptronRosenblat_module import Perceptron, plot_decision_regions
 
 print(
     '\n\n\n\n\n___Завдання №1 Читати дані з таблиці Excel і заноситиме їх у DataFrame, переводячи їх у числові, '
     'та рахуватиме ентропію усієї сукупності грибів')
 
-
 xlsx = pd.ExcelFile(r'C:\Python\Project\Study\Laboratory\Tasks\Task_1\Task_1.xlsx')
 
 
 def stint(x):
-    return ord(x) / 100.0
+    return ord(x) / 1000.0
 
 
 def stint1(x):
@@ -61,7 +61,6 @@ for i in sorted_df:
 
 print('список словників, list_of_dicts_val_and_qunt\n', list_of_dicts_val_and_qunt, end='\n\n')
 
-
 # Створюємо список списків ключів словників
 list_of_lists_keys_of_dicts = []
 for dict in list_of_dicts_val_and_qunt:
@@ -72,18 +71,12 @@ for dict in list_of_dicts_val_and_qunt:
 
 print('list_of_lists_keys_of_dicts\n', list_of_lists_keys_of_dicts, end='\n\n')
 
-
-
-
 # list Кількості груп
 list_of_ngroup = []
 for list_keys in list_of_lists_keys_of_dicts:
     ngroup = len(list_keys)
     list_of_ngroup.append(ngroup)
 print('list_of_ngroup\n', list_of_ngroup, end='\n\n')
-
-
-
 
 # # Створюємо список кількостей елементів у кожній групі
 
@@ -96,10 +89,6 @@ for dict in list_of_dicts_val_and_qunt:
 
 print('list_of_lists_nig\n', list_of_lists_nig, end='\n\n')
 
-
-
-
-
 # Середнє значення
 list_average_values = []
 for k in range(len(list_of_lists_keys_of_dicts)):
@@ -108,7 +97,6 @@ for k in range(len(list_of_lists_keys_of_dicts)):
         average_value += list_of_lists_keys_of_dicts[k][i] * list_of_lists_nig[k][i] / elem_count
     list_average_values.append(round(average_value, 3))
 print('average value\n', list_average_values, end='\n\n')
-
 
 list_of_dicts_namecol_aver_val = []
 for av in list_average_values:
@@ -120,15 +108,9 @@ print('list_of_dicts_namecol_aver_val')
 for dict in list_of_dicts_namecol_aver_val:
     print(dict)
 
-
-
-
-
-
-
 # # Створюємо список кількостей одиниць і нулів у кожній групі
-# # Зовнішній вимір буде відповідати кількості груп, а внутрішній - дорівнює двом, тобто відповідає двом різним значенням
-# # у першому стовпчику
+# # Зовнішній вимір буде відповідати кількості груп, а внутрішній - дорівнює двом,
+# тобто відповідає двом різним значенням у першому стовпчику
 
 list_of_lists_sss = []
 
@@ -140,7 +122,6 @@ for n_group in list_of_ngroup:
             sss[i].append(0.0)
     list_of_lists_sss.append(sss)
 print('list_sss\n', list_of_lists_sss)
-
 
 # # Рахуємо кількість нулів та одиниць у першому стовпчику для кожної з груп
 
@@ -158,7 +139,6 @@ for key in sorted_df:
 
 print('list_sss\n', list_of_lists_sss)
 
-
 # # Рахуємо ентропії для кожної з груп
 
 list_Entropy = []
@@ -170,10 +150,12 @@ for list_sss in list_of_lists_sss[1:]:
     for i in range(len(list_sss)):
         EG = 0.
         if list_sss[i][0] != 0.:
-            EG = EG - list_sss[i][0] / list_of_lists_nig[k][i] * math.log(list_sss[i][0] / list_of_lists_nig[k][i])  # Якщо кількість елементів в і-ій групі з
+            EG = EG - list_sss[i][0] / list_of_lists_nig[k][i] * math.log(
+                list_sss[i][0] / list_of_lists_nig[k][i])  # Якщо кількість елементів в і-ій групі з
             # нульовими значеннями в першому стовпчику дорівнює нулю, то дія не виконується
         if list_sss[i][1] != 0.:
-            EG = EG - list_sss[i][1] / list_of_lists_nig[k][i] * math.log(list_sss[i][1] / list_of_lists_nig[k][i])  # Якщо кількість елементів в і-ій групі зi
+            EG = EG - list_sss[i][1] / list_of_lists_nig[k][i] * math.log(
+                list_sss[i][1] / list_of_lists_nig[k][i])  # Якщо кількість елементів в і-ій групі зi
             # значеннями "одиниця" в першому стовпчику дорівнює нулю, то дія не виконується
         entropy.append(EG)
     list_Entropy.append(entropy)
@@ -200,18 +182,69 @@ for val in IG_list:
     k += 1
     IG_dict[names[k]] = val
 
-
 print('MainEntropy=', MainEntropy)
-print('InformationGrowth:',)
+print('InformationGrowth:', )
 pprint(IG_dict)
 
-print('\n\n\n\n\n___Завдання №3 За будь-якими 25 грибами таблиці будуватиме класифікаційні дерева для одного –двадцяти'
-      'найбільш інформативних параметрів.')
-
-print('\n\n\n\n\n___Завдання №4 Застосовуватиме класифікаційні дерева до решти 25 грибів. Для кожного класифікаційного'
-      'дерева вираховуватиме кількість помилок класифікації решти 25 грибів та будуватиме'
-      'залежність кількості помилок від розміру класифікаційного дерева. ')
 
 print('\n\n\n\n\n___Завдання №5 Будуватиме класифікаційні моделі на основі перцептрона Розенблата.'
       'Застосувати модель для 25 грибів на двох атрибутах та двох алгебраїчних комбінаціях сукупності атрибутів. '
       'Перевірити роботу моделей на решті 25 грибах.')
+
+
+QUANT_DATA = 25
+
+df_2 = pd.read_excel(r'C:\Python\Project\Study\Laboratory\Tasks\Task_1\Task_1.xlsx', usecols='A,B,C',
+                     header=None, names=['A', 'B', 'C'], converters={1: stint, 2: stint}, nrows=QUANT_DATA)
+
+sorted_df_2 = df_2.sort_values('A')
+print(sorted_df_2)
+y = df_2.iloc[0:50, 0].values
+y = np.where(y == 'p', -1, 1)
+
+print('y\n', y)
+# extract sepal length and petal length
+X = df_2.iloc[0:50, [1, 2]].values
+print('X\n', X)
+
+
+# plot data
+
+for i in range(QUANT_DATA):
+    if(y[i] == -1):
+        plt.scatter(X[i, 0], X[i, 1],
+            color='red', marker='o')
+    else:
+        plt.scatter(X[i, 0], X[i, 1],
+            color='blue', marker='x')
+
+
+plt.xlabel('sepal length [cm]')
+plt.ylabel('petal length [cm]')
+plt.legend(loc='upper left')
+plt.show()
+
+
+ppn = Perceptron(eta=0.1, n_iter=5000)
+
+ppn.fit(X, y)
+
+plt.plot(range(1, len(ppn.errors_) + 1), ppn.errors_, marker='o')
+plt.xlabel('Epochs')
+plt.ylabel('Number of updates')
+plt.show()
+
+
+plot_decision_regions(X, y, classifier=ppn)
+plt.xlabel('sepal length [cm]')
+plt.ylabel('petal length [cm]')
+plt.legend(loc='upper left')
+plt.show()
+
+
+# Оскільки класи отруйних і їстівних грибів не можна розділити прямою
+# то ми не зможеммо досконально навчити наш перцептрон.
+# У даній лабораторній я зозумів основну концепцію машиного навчання,
+# Використав данні ірисів, там отримались гарні результати.
+# А з грибами які б параметри не брав, нормальних результатів не отримав.
+# Висновок можу зробити, що треба більше данних для якісного навчання.
