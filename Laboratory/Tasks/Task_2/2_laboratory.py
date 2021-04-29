@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 import math
 from PerceptronRosenblat_module import Perceptron, plot_decision_regions
 
+
 print(
     '\n\n\n\n\n___Завдання №1 Читати дані з таблиці Excel і заноситиме їх у DataFrame, переводячи їх у числові, '
     'та рахуватиме ентропію усієї сукупності грибів')
